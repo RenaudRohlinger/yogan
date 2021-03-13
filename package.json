@@ -1,0 +1,104 @@
+{
+  "name": "@yogan/root",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "demo"
+  ],
+  "preconstruct": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "postinstall": "patch-package && preconstruct dev",
+    "build": "preconstruct build",
+    "watch": "preconstruct watch",
+    "dev": "preconstruct dev",
+    "release": "yarn build && yarn workspaces foreach --include three-material-gui npm publish",
+    "validate": "preconstruct validate",
+    "tsc": "tsc --noEmit",
+    "size": "yarn size-limit",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook --quiet",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "demo:dev": "yarn workspace demo dev",
+    "demo:build": "yarn workspace demo build",
+    "demo:serve": "cp ./demo/serve.json ./demo/dist && npx serve ./demo/dist",
+    "ci:test": "yarn demo:build && start-server-and-test demo:serve http-get://localhost:5000 cypress:run"
+  },
+  "size-limit": [
+    {
+      "name": "Yogan Core",
+      "limit": "3s",
+      "path": "packages/yogan/dist/yogan-core.*.prod.js"
+    },
+    {
+      "name": "Yogan Vanilla",
+      "limit": "3s",
+      "path": "packages/vanilla/dist/yogan-vanilla.*.prod.js"
+    },
+    {
+      "name": "Yogan React",
+      "limit": "3s",
+      "path": "packages/vanilla/dist/yogan-react.*.prod.js"
+    }
+  ],
+  "repository": "https://github.com/renaudrohlinger/yogan.git",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "three": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@preconstruct/cli": "^2.0.6",
+    "@size-limit/preset-big-lib": "^4.10.1",
+    "@size-limit/preset-small-lib": "^4.10.1",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/addon-storysource": "^6.1.21",
+    "@storybook/react": "^6.1.21",
+    "@testing-library/cypress": "^7.0.4",
+    "@types/node": "^14.14.34",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "@types/three": "^0.126.0",
+    "babel-eslint": "^10.1.0",
+    "concurrently": "^6.0.0",
+    "cypress": "^6.6.0",
+    "eslint": "^7.21.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-flowtype": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^5.1.3",
+    "patch-package": "^6.4.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "size-limit": "^4.10.1",
+    "start-server-and-test": "^1.12.0",
+    "tsd": "^0.14.0",
+    "typescript": "^4.2.3"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "tabWidth": 2,
+    "printWidth": 120
+  },
+  "main": "index.js",
+  "author": "onirenaud"
+}

@@ -1,0 +1,18 @@
+body {
+  font-family: system-ui;
+  margin: 0;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+#root, #root > div, canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom:0;
+}

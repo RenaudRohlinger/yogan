@@ -1,0 +1,29 @@
+{
+  "name": "@yogan/core",
+  "version": "0.0.1",
+  "main": "dist/yogan-core.cjs.js",
+  "module": "dist/yogan-core.esm.js",
+  "types": "dist/yogan-core.cjs.d.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "three": "*"
+  },
+  "scripts": {
+    "prebuild": "cp ../../README.md README.md"
+  },
+  "preconstruct": {
+    "entrypoints": [
+      "index.tsx"
+    ]
+  },
+  "dependencies": {
+    "@stitches/react": "0.1.0-canary.20",
+    "clipboard-polyfill": "^3.0.2",
+    "dequal": "^2.0.2",
+    "leva": "0.5.5",
+    "merge-value": "^1.0.0",
+    "valtio": "^0.8.2"
+  }
+}

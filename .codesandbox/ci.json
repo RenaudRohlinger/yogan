@@ -1,0 +1,6 @@
+{
+  "sandboxes": [
+    "/demo/src/sandboxes/three-material-gui-react",
+    "/demo/src/sandboxes/three-material-gui-vanilla"
+  ]
+}

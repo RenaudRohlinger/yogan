@@ -1,0 +1,15 @@
+{
+  "name": "@yogan/react",
+  "version": "0.0.1",
+  "main": "dist/yogan-react.cjs.js",
+  "module": "dist/yogan-react.esm.js",
+  "types": "dist/yogan-react.cjs.d.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "three": "*",
+    "react-dom": ">=16.8.0",
+    "react-three-fiber": "*",
+    "@yogan/core": ">=0.0.1"
+  }
+}
