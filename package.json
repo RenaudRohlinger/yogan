@@ -44,7 +44,7 @@
     {
       "name": "Yogan React",
       "limit": "3s",
-      "path": "packages/vanilla/dist/yogan-react.*.prod.js"
+      "path": "packages/react/dist/yogan-react.*.prod.js"
     }
   ],
   "repository": "https://github.com/renaudrohlinger/yogan.git",
