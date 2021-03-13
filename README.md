@@ -76,3 +76,17 @@ OR a custom env variable is available :
 ```jsx
 process.env.TME_PROD === 'SHOW';
 ```
+
+
+[npm]: https://img.shields.io/npm/v/@yogan/core
+[npm-url]: https://www.npmjs.com/package/@yogan/core
+[build-size]: https://badgen.net/bundlephobia/minzip/@yogan/core
+[build-size-url]: https://bundlephobia.com/result?p=@yogan/core
+[npm-downloads]: https://img.shields.io/npm/dw/@yogan/core
+[npmtrends-url]: https://www.npmtrends.com/@yogan/core
+
+# How to contribute :
+
+If you like this project, please consider helping out. All contributions are welcome as well as donations to [`paypal.me/renaudrohlinger`](https://www.paypal.me/renaudrohlinger) or by `BTC : 3DxQy7MAaFgJpuMpn8oHTyc679vREq5g6p`
+
+[`twitter 🐈‍⬛ @onirenaud`](https://twitter.com/onirenaud)
