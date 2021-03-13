@@ -111,8 +111,7 @@ export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
       }
     }
   });
-  gl.info.programs?.forEach((program: any) => {
-
+  gl?.info?.programs?.forEach((program: any) => {
     const cacheKeySplited = program.cacheKey.split(',');
     // convert and supply all mesh associated to this material to a debugger material
     const muidDerived = cacheKeySplited[cacheKeySplited.findIndex(getMUIIndex) + 1];

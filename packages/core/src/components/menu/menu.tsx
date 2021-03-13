@@ -3,6 +3,7 @@ import { getNameForEditorMaterial } from '../../helpers/shaderToMaterial';
 import { editorState } from '../../state';
 
 import { editorContext } from '../..';
+import { YoganElement } from '../../styles/styles';
 
 interface SubMenuProps {
   program: any;
@@ -44,7 +45,7 @@ export const Menu: VFC<SubMenuProps> = ({ program }) => {
   };
 
   return programGl && material ? (
-      <div onClick={(e) => {showUniforms(e)}}>
+      <YoganElement onClick={(e) => {showUniforms(e)}}>
         <span className="uppercase text-base tracking-wide text-blue-darker">{name}</span>
         {material && material.numberOfMaterialsUser > 1 && (
           <span>
@@ -56,6 +57,6 @@ export const Menu: VFC<SubMenuProps> = ({ program }) => {
         ) : (
           <span onClick={hide} />
         ))}
-    </div>
+    </YoganElement>
   ) : null;
 };

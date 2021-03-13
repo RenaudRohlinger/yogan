@@ -8,6 +8,7 @@
   "dependencies": {
     "@react-three/drei": "^4.0.0-beta.4",
     "@react-three/postprocessing": "^1.5.2",
+    "@yogan/core": "*",
     "@yogan/react": "*",
     "noisejs": "^2.1.0",
     "react": "^17.0.1",

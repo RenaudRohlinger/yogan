@@ -5,10 +5,6 @@ import { Environment, MeshDistortMaterial, Sphere } from '@react-three/drei'
 import { EffectComposer, Vignette } from '@react-three/postprocessing'
 import './index.css'
 
-function MyComponent() {
-  return null
-}
-
 export default function App() {
   
   return (
@@ -26,7 +22,6 @@ export default function App() {
           {/* <Noise opacity={0.4} /> */}
           <Vignette eskil={false} offset={0.1} darkness={1.1} />
         </EffectComposer>
-
       </React.Suspense>
     </Canvas>
   )

@@ -28,7 +28,7 @@ export default function App() {
   return (
     <>
       <Route path="/">
-          <h1>Yogan demos</h1>
+        <h1>Leva demos</h1>
           <h2>Sandboxes</h2>
           <div className={styles.linkList}>
             {Object.keys(links).map((link) => (
