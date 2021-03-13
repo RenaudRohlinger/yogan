@@ -9,13 +9,13 @@ import {
 import { Html } from './html';
 
 
-type MaterialGuiOptions = {
+type YoganOptions = {
   overrideRaf?: boolean;
   className?: string;
   fullScreen?: boolean;
 }
 
-const optionsDefault: MaterialGuiOptions = {
+const optionsDefault: YoganOptions = {
   overrideRaf: false,
   fullScreen: true,
 };
@@ -23,8 +23,8 @@ const optionsDefault: MaterialGuiOptions = {
 
 
 export let Logic = () => null;
-export let MaterialGui = (
-  _options?: MaterialGuiOptions
+export let Yogan = (
+  _options?: YoganOptions
 ) => {};
 
 export let useEditorComposer = () => {};
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === 'production' && process.env.TME_PROD !== 'SHOW') {
     return onRefChange
   }
 
-  MaterialGui = (_options?: MaterialGuiOptions) => {
+  Yogan = (_options?: YoganOptions) => {
     const options = Object.assign(optionsDefault, _options);
     Object.assign(editorState, options);
 

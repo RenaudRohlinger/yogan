@@ -14,13 +14,13 @@ import {
   materialsToProgram,
 } from '@yogan/core';
 
-type MaterialGuiOptions = {
+type YoganOptions = {
   camera?: PerspectiveCamera | OrthographicCamera;
   overrideRaf?: boolean;
   fullScreen?: boolean;
 }
 
-const optionsDefault: MaterialGuiOptions = {
+const optionsDefault: YoganOptions = {
   overrideRaf: false,
   fullScreen: true,
 };
@@ -28,22 +28,22 @@ const optionsDefault: MaterialGuiOptions = {
 export let updateEditor = (
   _scene: Scene,
   _gl: WebGLRenderer,
-  _options?: MaterialGuiOptions
+  _options?: YoganOptions
 ) => {};
 export let useEditorComposer = (
   _composer: any
 ) => {};
-export let MaterialGui = (
+export let Yogan = (
   _scene: Scene,
   _gl: WebGLRenderer,
-  _options?: MaterialGuiOptions
+  _options?: YoganOptions
 ) => {};
 
 if (process.env.NODE_ENV === 'production' && process.env.TME_PROD !== 'SHOW') {
 } else {
   const _resizeCanvasToDisplaySize = (
     gl: WebGLRenderer,
-    options?: MaterialGuiOptions
+    options?: YoganOptions
   ) => {
     const canvas = gl.domElement;
     const width = canvas.clientWidth;
@@ -67,7 +67,7 @@ if (process.env.NODE_ENV === 'production' && process.env.TME_PROD !== 'SHOW') {
   updateEditor = (
     scene: Scene,
     gl: WebGLRenderer,
-    _options?: MaterialGuiOptions
+    _options?: YoganOptions
   ) => {
     const options = Object.assign(optionsDefault, _options);
 
@@ -92,10 +92,10 @@ if (process.env.NODE_ENV === 'production' && process.env.TME_PROD !== 'SHOW') {
     );
   };
 
-  MaterialGui = (
+  Yogan = (
     scene: Scene,
     gl: WebGLRenderer,
-    _options?: MaterialGuiOptions
+    _options?: YoganOptions
   ) => {
     const options = Object.assign(optionsDefault, _options);
     Object.assign(editorState, options);

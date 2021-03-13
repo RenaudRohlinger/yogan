@@ -1,6 +1,6 @@
 import React from 'react'
 import { Canvas } from 'react-three-fiber';
-import { MaterialGui, useEditorComposer } from '@yogan/react';
+import { Yogan, useEditorComposer } from '@yogan/react';
 import { Environment, MeshDistortMaterial, Sphere } from '@react-three/drei'
 import { EffectComposer, Vignette } from '@react-three/postprocessing'
 import './index.css'
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <Canvas concurrent orthographic pixelRatio={[1, 2]} camera={{ position: [0, 0, 5], near: 1, far: 15, zoom: 100 }}>
       <ambientLight />
-      <MaterialGui />
+      <Yogan />
       <React.Suspense fallback={null}>
         <Sphere
           args={[1, 32, 32]}
