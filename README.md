@@ -1,1 +1,1 @@
-Why Yogan ? Because it use Leva and it's the japanese translation of it.
+Yōgan
