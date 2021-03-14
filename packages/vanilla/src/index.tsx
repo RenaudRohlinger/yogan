@@ -39,7 +39,7 @@ export let Yogan = (
   _options?: YoganOptions
 ) => {};
 
-if (process.env.NODE_ENV === 'production' && process.env.TME_PROD !== 'SHOW') {
+if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') {
 } else {
   const _resizeCanvasToDisplaySize = (
     gl: WebGLRenderer,

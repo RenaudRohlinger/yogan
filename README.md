@@ -3,7 +3,7 @@
 ## [![NPM Package][npm]][npm-url] [![Build Size][build-size]][build-size-url] [![NPM Downloads][npm-downloads]][npmtrends-url]
 
 
-Automatically detect the WebGL programs and provide a GUI for the uniforms.
+Yōgan automatically detect the WebGL programs and provide a smart GUI for the uniforms.
 
 #### Support :
 
@@ -55,14 +55,24 @@ import {
   <EffectComposer ref={useEditorComposer()}>...</EffectComposer>
 </Canvas>;
 ```
+
+## Shader initialize range
+It is possible to specify the range of your uniforms:
+
+`uniform float amount; // { "value": 0.5, "min": 0, "max": 10 }`
+
+For the moment only float are supported, vectors should be added soon: https://github.com/pmndrs/leva/issues/141
+
+
 <!-- 
 Demo : [codesandbox](https://codesandbox.io/s/yoganreact-z59h4)
 
 [`See more - @yogan/react`](https://github.com/RenaudRohlinger/yogan/tree/main/packages/react) -->
 
+----
 ## Automatically removed in production
 
-The Material Editor is automatically remove from the production build based on the `process.env.NODE_ENV`.
+Yogan is automatically remove from the production build based on the `process.env.NODE_ENV`.
 
 To render the editor in production :
 
@@ -73,7 +83,7 @@ import { Yogan } from '@yogan/vanilla/dist/vanilla.cjs.development';
 OR a custom env variable is available :
 
 ```jsx
-process.env.TME_PROD === 'SHOW';
+process.env.YOGAN_PROD === 'SHOW';
 ```
 
 
