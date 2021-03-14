@@ -25,12 +25,11 @@ import {
   useEditorComposer,
 } from '@yogan/vanilla';
 
-// add the editor in the init function of your app
 Yogan(scene, renderer, {
   camera: camera, // handle responsize dpr for fullscreen
 });
 
-let composer = new EffectComposer(renderer);
+let composer = new EffectComposer(renderer); // if using postprocess
 useEditorComposer(composer);
 ```
 <!-- 
@@ -52,7 +51,7 @@ import {
 
 <Canvas>
   <Yogan />
-  <EffectComposer ref={useEditorComposer()}>...</EffectComposer>
+  <EffectComposer ref={useEditorComposer()}></EffectComposer>
 </Canvas>;
 ```
 
