@@ -37,6 +37,41 @@ export const getNameForEditorMaterial = (material: any, programGl: any) => {
   return name;
 };
 
+export const makeControls = (vert: string, frag: string) => {
+  const controls = `
+    ${vert}
+    ${frag}
+  `
+    .split('\n')
+    .filter((x) => x.indexOf('uniform') > -1)
+    .map((x) => x.match(/uniform (.+?) (.+?);.+(\/\/.+)/m))
+    .filter((x) => x)
+    .map((match) => {
+      if (match && match[3]) {
+        match[3] = match[3].replaceAll('.,', '.0,')
+        match[3] = match[3].replaceAll('.}', '.0}')
+      }
+
+      try {
+        return match ? {
+          type: match[1],
+          name: match[2],
+          controls: JSON.parse(match[3].replace('// ', ''))
+        } : null
+      } catch (error) {
+        console.log(error)
+        return null
+      }
+    
+    })
+  return controls.reduce((controls: any, control) => {
+    if (control && control.name) {
+      controls[control.name] = control.controls
+    }
+    return controls
+  }, {})
+}
+
 export const getShaderWithObc = (material: any) => {
   let builtinType = MATERIAL_TYPES_TO_SHADERS[material.type];
 

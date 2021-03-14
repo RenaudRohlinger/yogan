@@ -5,6 +5,7 @@ import { editorContextState as editorContext, editorState } from '../../state';
 import { Leva, LevaPanel, useControls, useCreateStore } from "leva";
 import { useSnapshot } from 'valtio';
 import * as THREE from 'three'
+import { makeControls } from '../../helpers/shaderToMaterial';
 
 interface UniformsMenuProps {
 }
@@ -32,11 +33,21 @@ export const UniformsMenu: VFC<UniformsMenuProps> = () => {
 
   const filteredItems:any = {}
 
+  const improveLevaRange = makeControls(material.vertexShader, material.fragmentShader)
 
   if (material.uniforms.size && material.uniforms.size > 0) {
     material.uniforms.forEach((uniform: any, key: any) => {
       if (!uniform.isNativeUniforms && key !== 'time') {
-        if (typeof uniform.value === 'number') {
+        if (improveLevaRange && improveLevaRange[key]) {
+          const range = improveLevaRange[key]
+          if (!uniform.rangeInitialized) {
+            uniform.value = range.value
+            uniform.rangeInitialized = true
+          }
+  
+          uniform.min = range.min
+          uniform.max = range.max
+        } else if (typeof uniform.value === 'number') {
           uniform.min = -1
           uniform.max = 1
         }
@@ -65,9 +76,19 @@ export const UniformsMenu: VFC<UniformsMenuProps> = () => {
     if (Object.keys(material.uniforms).length === 0) {
       return null
     }
+
     Object.entries(material.uniforms).map(([key, uniform]: any) => {
       if (!uniform.isNativeUniforms && key !== 'time') {
-        if (typeof uniform.value === 'number') {
+        if (improveLevaRange && improveLevaRange[key]) {
+          const range = improveLevaRange[key]
+          if (!uniform.rangeInitialized) {
+            uniform.value = range.value
+            uniform.rangeInitialized = true
+          }
+  
+          uniform.min = range.min
+          uniform.max = range.max
+        } else if (typeof uniform.value === 'number') {
           uniform.min = Math.min(-1, -Math.round(uniform.value))
           uniform.max = Math.max(1, Math.round(uniform.value))
         }

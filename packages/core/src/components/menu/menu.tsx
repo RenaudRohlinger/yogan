@@ -29,7 +29,6 @@ export const Menu: VFC<SubMenuProps> = ({ program }) => {
 
   const showUniforms = (e: any) => {
     e.stopPropagation();
-    console.log(e)
     const value = {
       type: '',
       open: true,
