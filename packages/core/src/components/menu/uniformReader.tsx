@@ -53,6 +53,10 @@ export const UniformReader = () => {
 const UniformComp = ({format, material, name} :any) => {
   const obj:any = {}
   obj[name] = folder(format)
+  if (!obj) {
+    return null
+  }
+
   const store = useStoreContext()
   const elements = useControls(obj, {store})
 
