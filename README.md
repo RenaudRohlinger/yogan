@@ -34,12 +34,12 @@ yarn add -D @yogan/react
 
 ```jsx
 import {
-  Yogan, useEditorComposer,
+  Yogan, useYoganComposer,
 } from '@yogan/react';
 
 <Canvas>
   <Yogan />
-  <EffectComposer ref={useEditorComposer()}></EffectComposer>
+  <EffectComposer ref={useYoganComposer()}></EffectComposer>
 </Canvas>;
 ```
 ## Vanilla
@@ -50,12 +50,12 @@ yarn add -D @yogan/vanilla
 
 ```jsx
 import {
-  Yogan, useEditorComposer,
+  Yogan, useYoganComposer,
 } from '@yogan/vanilla';
 
 Yogan(scene, renderer);
 let composer = new EffectComposer(renderer); // if using postprocess
-useEditorComposer(composer);
+useYoganComposer(composer);
 ```
 <!-- 
 Demo : [codesandbox](https://codesandbox.io/s/yoganreact-z59h4)

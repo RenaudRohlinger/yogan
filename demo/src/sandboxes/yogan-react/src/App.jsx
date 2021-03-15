@@ -1,6 +1,6 @@
 import React from 'react'
 import { Canvas, extend } from 'react-three-fiber';
-import { Yogan, useEditorComposer } from '@yogan/react';
+import { Yogan, useYoganComposer } from '@yogan/react';
 import { Environment, MeshDistortMaterial, shaderMaterial, Sphere } from '@react-three/drei'
 import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import './index.css'
@@ -56,7 +56,7 @@ export default function App() {
           <MeshDistortMaterial factor={2} color={'black'} />
         </Sphere>
         <Environment preset={'studio'} />
-        <EffectComposer ref={useEditorComposer()}>
+        <EffectComposer ref={useYoganComposer()}>
           {/* <Noise opacity={0.4} /> */}
           <Vignette eskil={false} offset={0.1} darkness={1.1} />
         </EffectComposer>

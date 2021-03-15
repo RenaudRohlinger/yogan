@@ -25,7 +25,7 @@ export let updateYogan = (
   _gl: WebGLRenderer,
   _options?: YoganOptions
 ) => {};
-export let useEditorComposer = (
+export let useYoganComposer = (
   _composer: any
 ) => {};
 export let Yogan = (
@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     materialsToProgram(scene, gl);
   };
 
-  useEditorComposer = (composer: any) => {
+  useYoganComposer = (composer: any) => {
     editorContext.composer = composer
   }
 
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
 
     return (
       <>
-        <GuiDom position={props.position} />
+        <GuiDom />
       </>
     );
   };

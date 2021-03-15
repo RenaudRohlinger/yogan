@@ -22,7 +22,7 @@ export let Yogan = (
   _options?: YoganOptions
 ) => {};
 
-export let useEditorComposer = () => {};
+export let useYoganComposer = () => {};
 
 if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') {
 } else {
@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
 
     return null;
   };
-  useEditorComposer = () => {
+  useYoganComposer = () => {
     const onRefChange = useCallback(node => {
       if (node === null) { 
         editorContext.composer = null
