@@ -12,6 +12,7 @@
     "@yogan/core": "*",
     "@yogan/react": "*",
     "noisejs": "^2.1.0",
+    "r3f-perf": "^0.83.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-three-fiber": "^5.3.19",

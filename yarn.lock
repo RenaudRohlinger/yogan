@@ -1818,6 +1818,11 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@react-icons/all-files@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@react-icons/all-files/-/all-files-4.1.0.tgz#477284873a0821928224b6fc84c62d2534d6650b"
+  integrity sha512-hxBI2UOuVaI3O/BhQfhtb4kcGn9ft12RWAFVMUeNjqqhLsHvFtzIkFaptBJpFDANTKoDfdVoHTKZDlwKCACbMQ==
+
 "@react-spring/animated@9.0.0-rc.3":
   version "9.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.0.0-rc.3.tgz#e792cb76aacecfc78db2be6020ac11ce96503eb5"
@@ -8716,6 +8721,11 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
+lerp@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/lerp/-/lerp-1.0.3.tgz#a18c8968f917896de15ccfcc28d55a6b731e776e"
+  integrity sha1-oYyJaPkXiW3hXM/MKNVaa3Med24=
+
 leva@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/leva/-/leva-0.6.2.tgz#9dff40109f178a7ddbfa8af8b0b927650780fd30"
@@ -11058,6 +11068,16 @@ quick-lru@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
+
+r3f-perf@^0.83.1:
+  version "0.83.1"
+  resolved "https://registry.yarnpkg.com/r3f-perf/-/r3f-perf-0.83.1.tgz#119b69a85b5df244168500e80a674f0d97fda24e"
+  integrity sha512-5t3J3ukHbh/nk+E5CIgksRIpHz1PJZPHA7iILfsIa5cVEQHqimX8AjXRVmeZwAQ5j9ik133hiAEkSmqQVQtJtQ==
+  dependencies:
+    "@react-icons/all-files" "^4.1.0"
+    "@types/three" "^0.126.0"
+    lerp "^1.0.3"
+    zustand "^3.3.3"
 
 ramda@^0.21.0:
   version "0.21.0"

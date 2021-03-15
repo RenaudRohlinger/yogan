@@ -50,17 +50,17 @@ const _insertMaterialToEditor = (element: any, container: any, isEffect?: boolea
 }
 
 const _insertNativePostProcessToEditor = (el: any, container: any) => {
-  if (!el.material) {
+  if (!el.material && !el.materialCopy) {
     return
   }
-  const muid = el.material.id;
+  const muid = el.materialCopy ? el.materialCopy.id : el.material.id;
   // prevent to derive loop
   if (
     muid &&
     !container[muid]
   ) {
     
-    const { material } = addShaderDebugMaterial(el.material);
+    const { material } = addShaderDebugMaterial(el.materialCopy || el.material);
     el.material = material;
     // to check if multiple material users
     el.tmeDerived = true;

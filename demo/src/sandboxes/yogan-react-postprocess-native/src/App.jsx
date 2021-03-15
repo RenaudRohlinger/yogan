@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import React, { useRef, Suspense, useEffect, useLayoutEffect } from 'react'
 import { Canvas, useFrame, useThree, extend } from 'react-three-fiber'
 import { ContactShadows, Loader, useTexture } from '@react-three/drei'
+import { Perf } from 'r3f-perf'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
@@ -74,6 +75,7 @@ export default function App() {
         <Effects />
       </Suspense>
       <Yogan />
+      <Perf position={'bottom-right'} />
     </Canvas>
     <Loader />
   </>

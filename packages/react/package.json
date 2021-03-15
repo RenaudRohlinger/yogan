@@ -1,6 +1,6 @@
 {
   "name": "@yogan/react",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/yogan-react.cjs.js",
   "module": "dist/yogan-react.esm.js",
   "types": "dist/yogan-react.cjs.d.ts",

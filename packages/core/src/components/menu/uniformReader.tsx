@@ -119,6 +119,9 @@ const formatUniforms = (material: any, id: number) => {
   if (material.uniforms.size && material.uniforms.size > 0) {
     material.uniforms.forEach((uniform: any, key: any) => {
       if (!uniform.isNativeUniforms && key !== 'time') {
+        if (uniform.value instanceof THREE.Vector4) {
+          return
+        }
         if (improveLevaRange && improveLevaRange[key]) {
           const range = improveLevaRange[key]
           if (!uniform.rangeInitialized) {
@@ -132,6 +135,7 @@ const formatUniforms = (material: any, id: number) => {
           uniform.min = -1
           uniform.max = 1
         }
+
         if (uniform.type) {
           delete uniform.type
         }
@@ -160,6 +164,9 @@ const formatUniforms = (material: any, id: number) => {
 
     Object.entries(material.uniforms).map(([key, uniform]: any) => {
       if (!uniform.isNativeUniforms && key !== 'time') {
+        if (uniform.value instanceof THREE.Vector4) {
+          return
+        }
         if (improveLevaRange && improveLevaRange[key]) {
           const range = improveLevaRange[key]
           if (!uniform.rangeInitialized) {
@@ -173,6 +180,7 @@ const formatUniforms = (material: any, id: number) => {
           uniform.min = Math.min(-1, -Math.round(uniform.value))
           uniform.max = Math.max(1, Math.round(uniform.value))
         }
+        
         if (uniform.type) {
           delete uniform.type
         }
@@ -186,7 +194,6 @@ const formatUniforms = (material: any, id: number) => {
         } else {
           filteredItems[`${key}_${id}`] = uniform
         }
-
         Object.entries(filteredItems[`${key}_${id}`]).map(([skey, value]) => {
           if (typeof value === 'string') {
             delete filteredItems[`${key}_${id}`][skey]
