@@ -2,10 +2,12 @@ import React from 'react'
 import { Link, Route } from 'wouter'
 
 import Minimal from './sandboxes/yogan-react/src/App'
+import PPNative from './sandboxes/yogan-react-postprocess-native/src/App'
 import styles from './styles.module.css'
 
 const links = {
   'yogan-minimal': Minimal,
+  'yogan-postprocess-native': PPNative,
 }
 
 const Example = ({ link }) => {

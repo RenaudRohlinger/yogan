@@ -50,6 +50,9 @@ const _insertMaterialToEditor = (element: any, container: any, isEffect?: boolea
 }
 
 const _insertNativePostProcessToEditor = (el: any, container: any) => {
+  if (!el.material) {
+    return
+  }
   const muid = el.material.id;
   // prevent to derive loop
   if (
