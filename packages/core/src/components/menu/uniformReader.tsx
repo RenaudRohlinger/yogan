@@ -1,38 +1,106 @@
 
 
-import React, { useEffect, VFC } from 'react';
+import React, { useEffect } from 'react';
 import { editorContextState as editorContext, editorState } from '../../state';
-import { Leva, LevaPanel, useControls, useCreateStore } from "leva";
+import { folder, LevaPanel, useControls, useCreateStore, useStoreContext, LevaStoreProvider } from "leva";
 import { useSnapshot } from 'valtio';
 import * as THREE from 'three'
-import { makeControls } from '../../helpers/shaderToMaterial';
-
-interface UniformsMenuProps {
-}
+import { getNameForEditorMaterial, makeControls } from '../../helpers/shaderToMaterial';
 
 // foreach
 const color = new THREE.Color()
-export const UniformsMenu: VFC<UniformsMenuProps> = () => {
+export const UniformReader = () => {
+  const [arr, set]:any = React.useState([])
+  const store = useCreateStore()
+
   const snapshot = useSnapshot(editorState);
-  const [store, setSelection]:any = React.useState(null)
 
-  if (!editorContext.activeMaterialRef || !editorState.activeMaterial.model) {
-    return null;
-  }
-  const activeMat = editorContext.activeMaterialRef[editorState.activeMaterial.model]
+  useEffect(() => {
+    const tempArr:any = []
 
-  if (!activeMat) {
-    return null
-  }
-  const material: any = activeMat.material;
+    editorContext.programs.forEach((program: any) => {
+      const material: any = program.material;
+      const programGl = program.program;
+      if (!programGl) {
+        return null
+      }
+      const name = getNameForEditorMaterial(material, programGl)
+  
+      if (!material.uniforms) {
+        return null
+      }
+      const test = formatUniforms(material, programGl.id)
+      tempArr.push({name: name, format: test, material: material})
+    })
+    set(tempArr)
+    editorState.triggerUpdate++
+  }, [editorState.numberPrograms])
 
 
-  if (!editorState.showUniforms || !material.uniforms) {
-    return null
-  }
+  return (
+    <div key={snapshot.triggerUpdate}>
+      <LevaPanel store={store} />
+      <LevaStoreProvider store={store}>
+        {arr.map(({format, material, name}:any) => {
+          return <UniformComp format={format} material={material} name={name} key={name.toString()} />;
+        })}
+      </LevaStoreProvider>
+    </div>
+  )
+};
 
+
+const UniformComp = ({format, material, name} :any) => {
+  const obj:any = {}
+  obj[name] = folder(format)
+  const store = useStoreContext()
+  const elements = useControls(obj, {store})
+
+  // @ts-ignore
+  useEffect(() => {
+    if (material) {
+      if (!material.uniforms) {
+        return null
+      }
+      const uniforms = material.uniforms
+
+      for (const [key, value] of Object.entries(elements)) {
+        const val:any = value
+        const keyWithoutProgId = key.split('_').shift()
+        if (!keyWithoutProgId) {
+          return
+        }
+        var materialUniform = uniforms instanceof Map ? uniforms.get(keyWithoutProgId) : uniforms[keyWithoutProgId]
+        
+        // is image
+        if (typeof value === 'string' || !value) {
+          loadTexture(uniforms, materialUniform, keyWithoutProgId, value)
+        } else {
+
+          if (materialUniform) {
+            if (val['r'] && val['g'] && val['b']) {
+              const factor =  255
+              materialUniform.value = color.setRGB(val['r'] / factor, val['g'] / factor, val['b'] / factor)
+              setUniformValue(uniforms, materialUniform, keyWithoutProgId)
+
+            } else {
+              materialUniform.value = value
+              setUniformValue(uniforms, materialUniform, keyWithoutProgId)
+            }
+          }
+        }
+      }
+    }
+  }, [material, elements])
+
+  return null
+}
+
+
+
+
+const formatUniforms = (material: any, id: number) => {
   const filteredItems:any = {}
-
   const improveLevaRange = makeControls(material.vertexShader, material.fragmentShader)
 
   if (material.uniforms.size && material.uniforms.size > 0) {
@@ -56,18 +124,18 @@ export const UniformsMenu: VFC<UniformsMenuProps> = () => {
         }
 
         if (uniform && uniform.value && uniform.value.image) {
-          filteredItems[key] = {image: uniform.value}
+          filteredItems[`${key}_${id}`] = {image: uniform.value}
           uniform.copyRef = uniform.value.image.currentSrc
         } else if (uniform.value && uniform.value.isColor) {
           const col = uniform.value
-          filteredItems[key] = {r: col.r * 255, g: col.g * 255, b: col.b * 255}
+          filteredItems[`${key}_${id}`] = {r: col.r * 255, g: col.g * 255, b: col.b * 255}
         } else {
-          filteredItems[key] = uniform
+          filteredItems[`${key}_${id}`] = uniform
         }
         material.uniforms.set(key, uniform)
-        Object.entries(filteredItems[key]).map(([skey, value]) => {
+        Object.entries(filteredItems[`${key}_${id}`]).map(([skey, value]) => {
           if (typeof value === 'string') {
-            delete filteredItems[key][skey]
+            delete filteredItems[`${key}_${id}`][skey]
           }
         })
       }
@@ -96,40 +164,26 @@ export const UniformsMenu: VFC<UniformsMenuProps> = () => {
           delete uniform.type
         }
         if (uniform && uniform.value && uniform.value.image) {
-          filteredItems[key] = {image: uniform.value}
+          filteredItems[`${key}_${id}`] = {image: uniform.value}
           uniform.copyRef = uniform.value.image.currentSrc
 
         } else if (uniform.value && uniform.value.isColor) {
           const col = uniform.value
-          filteredItems[key] = {r: col.r * 255, g: col.g * 255, b: col.b * 255}
+          filteredItems[`${key}_${id}`] = {r: col.r * 255, g: col.g * 255, b: col.b * 255}
         } else {
-          filteredItems[key] = uniform
+          filteredItems[`${key}_${id}`] = uniform
         }
 
-        Object.entries(filteredItems[key]).map(([skey, value]) => {
+        Object.entries(filteredItems[`${key}_${id}`]).map(([skey, value]) => {
           if (typeof value === 'string') {
-            delete filteredItems[key][skey]
+            delete filteredItems[`${key}_${id}`][skey]
           }
         })
       }
     })
   }
-
-
-
-  return (
-    <div>
-      <Leva hideTitleBar />
-      <LevaPanel store={store} />
-      <div key={snapshot.triggerUpdate}>
-        <UniformComp filteredItems={filteredItems} setSelection={setSelection} uniforms={material.uniforms} store={store} />
-      </div>
-    </div>
-  )
-};
-
-
-
+  return filteredItems
+}
 
 const loadTexture = (uniforms: any, materialUniform: any, key: string, value: any) => {
 
@@ -158,42 +212,6 @@ const loadTexture = (uniforms: any, materialUniform: any, key: string, value: an
     }
   }
  
-}
-const UniformComp = ({filteredItems, uniforms, setSelection} :any) => {
-  const store = useCreateStore()
-  const [elements] = useControls(() => (filteredItems), { store })
-
-
-  useEffect(() => {
-    for (const [key, value] of Object.entries(elements)) {
-      const val:any = value
-      var materialUniform = uniforms[key] || uniforms.get(key)
-
-      // is image
-      if (typeof value === 'string' || !value) {
-        loadTexture(uniforms, materialUniform, key, value)
-      } else {
-
-        if (materialUniform) {
-          if (val['r'] && val['g'] && val['b']) {
-            const factor =  255
-            materialUniform.value = color.setRGB(val['r'] / factor, val['g'] / factor, val['b'] / factor)
-            setUniformValue(uniforms, materialUniform, key)
-
-          } else {
-            materialUniform.value = value
-            setUniformValue(uniforms, materialUniform, key)
-          }
-        }
-      }
-    }
-  }, [elements])
-
-  useEffect(() => {
-    setSelection(store)
-  }, [store, setSelection])
-
-  return null
 }
 
 const setUniformValue = (uniforms: any, materialUniform: any, key: string) => {

@@ -149,6 +149,7 @@ export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
     programs.length !== editorContextState.programs.length
   ) {
     editorContextState.programs = programs;
+    editorState.numberPrograms = programs.length;
     editorState.triggerUpdate++;
   }
 };
