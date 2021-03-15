@@ -77,7 +77,7 @@ export default function App() {
       <Yogan />
       <Perf position={'bottom-right'} />
     </Canvas>
-    <Loader />
+    {/* <Loader /> */}
   </>
   )
 }
