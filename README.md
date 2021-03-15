@@ -13,46 +13,6 @@ Yōgan automatically detect the WebGL programs and provide a smart GUI for the u
 - React and Vanilla builds
 - Support SSR framework such as NextJS
 
-## Quick start - Vanilla
-
-```sh
-yarn add -D @yogan/vanilla
-```
-
-```jsx
-import {
-  Yogan,
-  useEditorComposer,
-} from '@yogan/vanilla';
-
-Yogan(scene, renderer);
-
-let composer = new EffectComposer(renderer); // if using postprocess
-useEditorComposer(composer);
-```
-<!-- 
-Demo : [codesandbox](https://codesandbox.io/s/yoganvanilla-l55jn)
-
-[`See more - @yogan/vanilla`](https://github.com/RenaudRohlinger/yogan/tree/main/packages/vanilla) -->
-
-## Quick start - React-Three-Fiber
-
-```sh
-yarn add -D @yogan/react
-```
-
-```jsx
-import {
-  Yogan,
-  useEditorComposer,
-} from '@yogan/react';
-
-<Canvas>
-  <Yogan />
-  <EffectComposer ref={useEditorComposer()}></EffectComposer>
-</Canvas>;
-```
-
 ## Shader initialize range
 It is possible to specify the range of your uniforms:
 
@@ -61,6 +21,42 @@ It is possible to specify the range of your uniforms:
 For the moment only float are supported, vectors should be added soon: https://github.com/pmndrs/leva/issues/141
 
 
+<!-- 
+Demo : [codesandbox](https://codesandbox.io/s/yoganvanilla-l55jn)
+
+[`See more - @yogan/vanilla`](https://github.com/RenaudRohlinger/yogan/tree/main/packages/vanilla) -->
+
+## React-Three-Fiber
+
+```sh
+yarn add -D @yogan/react
+```
+
+```jsx
+import {
+  Yogan, useEditorComposer,
+} from '@yogan/react';
+
+<Canvas>
+  <Yogan />
+  <EffectComposer ref={useEditorComposer()}></EffectComposer>
+</Canvas>;
+```
+## Vanilla
+
+```sh
+yarn add -D @yogan/vanilla
+```
+
+```jsx
+import {
+  Yogan, useEditorComposer,
+} from '@yogan/vanilla';
+
+Yogan(scene, renderer);
+let composer = new EffectComposer(renderer); // if using postprocess
+useEditorComposer(composer);
+```
 <!-- 
 Demo : [codesandbox](https://codesandbox.io/s/yoganreact-z59h4)
 
