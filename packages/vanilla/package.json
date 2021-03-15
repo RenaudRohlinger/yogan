@@ -1,6 +1,6 @@
 {
   "name": "@yogan/vanilla",
-  "version": "0.2.0",
+  "version": "0.2.1"
   "main": "dist/yogan-vanilla.cjs.js",
   "module": "dist/yogan-vanilla.esm.js",
   "types": "dist/yogan-vanilla.cjs.d.ts",
