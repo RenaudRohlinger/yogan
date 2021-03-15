@@ -31,8 +31,8 @@ export const UniformReader = () => {
       }
       const test = formatUniforms(material, programGl.id)
       if (test) {
-        tempArr.push({name: name, format: test, material: material})
-      }
+      tempArr.push({name: name, format: test, material: material})
+    }
     })
     set(tempArr)
     editorState.triggerUpdate++
@@ -59,6 +59,7 @@ const UniformComp = ({format, material, name} :any) => {
   if (!(material.uniforms instanceof Map) && Object.keys(material.uniforms).length === 0) {
     return null
   }
+  console.log(material.uniforms instanceof Map)
 
   const obj:any = {}
   obj[name] = folder(format)
@@ -119,9 +120,6 @@ const formatUniforms = (material: any, id: number) => {
   if (material.uniforms.size && material.uniforms.size > 0) {
     material.uniforms.forEach((uniform: any, key: any) => {
       if (!uniform.isNativeUniforms && key !== 'time') {
-        if (uniform.value instanceof THREE.Vector4) {
-          return
-        }
         if (improveLevaRange && improveLevaRange[key]) {
           const range = improveLevaRange[key]
           if (!uniform.rangeInitialized) {
@@ -135,7 +133,6 @@ const formatUniforms = (material: any, id: number) => {
           uniform.min = -1
           uniform.max = 1
         }
-
         if (uniform.type) {
           delete uniform.type
         }
@@ -164,9 +161,6 @@ const formatUniforms = (material: any, id: number) => {
 
     Object.entries(material.uniforms).map(([key, uniform]: any) => {
       if (!uniform.isNativeUniforms && key !== 'time') {
-        if (uniform.value instanceof THREE.Vector4) {
-          return
-        }
         if (improveLevaRange && improveLevaRange[key]) {
           const range = improveLevaRange[key]
           if (!uniform.rangeInitialized) {
@@ -180,7 +174,6 @@ const formatUniforms = (material: any, id: number) => {
           uniform.min = Math.min(-1, -Math.round(uniform.value))
           uniform.max = Math.max(1, Math.round(uniform.value))
         }
-        
         if (uniform.type) {
           delete uniform.type
         }
@@ -194,6 +187,7 @@ const formatUniforms = (material: any, id: number) => {
         } else {
           filteredItems[`${key}_${id}`] = uniform
         }
+
         Object.entries(filteredItems[`${key}_${id}`]).map(([skey, value]) => {
           if (typeof value === 'string') {
             delete filteredItems[`${key}_${id}`][skey]

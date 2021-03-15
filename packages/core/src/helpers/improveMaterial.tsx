@@ -6,8 +6,8 @@ import {
 
 export const addShaderDebugMaterial = (material: any) => {
   let newMaterial = material;
-  const shader = getShaderWithObc(newMaterial)
-  newMaterial = Object.assign(newMaterial, shader);
+  // const shader = getShaderWithObc(newMaterial)
+  // newMaterial = Object.assign(newMaterial, shader);
 
   // const epoch = Date.now();
 
