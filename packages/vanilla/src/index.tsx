@@ -20,7 +20,7 @@ const optionsDefault: YoganOptions = {
   overrideRaf: false,
 };
 
-export let updateEditor = (
+export let updateYogan = (
   _scene: Scene,
   _gl: WebGLRenderer,
   _options?: YoganOptions
@@ -36,7 +36,7 @@ export let Yogan = (
 
 if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') {
 } else {
-  updateEditor = (
+  updateYogan = (
     scene: Scene,
     gl: WebGLRenderer,
     _options?: YoganOptions
@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     materialsToProgram(scene, gl);
     if (!options || (options && !options.overrideRaf)) {
       const animate = () => {
-        updateEditor(scene, gl, options);
+        updateYogan(scene, gl, options);
         requestAnimationFrame(animate);
       };
       animate();

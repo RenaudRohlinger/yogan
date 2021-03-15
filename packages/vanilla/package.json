@@ -1,16 +1,16 @@
 {
   "name": "@yogan/vanilla",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/yogan-vanilla.cjs.js",
   "module": "dist/yogan-vanilla.esm.js",
   "types": "dist/yogan-vanilla.cjs.d.ts",
   "license": "MIT",
   "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "@yogan/core": ">=0.0.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "three": "*",
-    "react-dom": ">=16.8.0"
+    "three": "*"
   }
 }
