@@ -50,11 +50,11 @@ export default function App() {
         >
           <myMaterial />
         </Sphere>
-        {/* <Sphere
+        <Sphere
           args={[1, 32, 32]}
         >
           <MeshDistortMaterial factor={2} color={'black'} />
-        </Sphere> */}
+        </Sphere>
         {/* <Environment preset={'studio'} /> */}
         <EffectComposer ref={useYoganComposer()}>
           <Noise opacity={0.4} />

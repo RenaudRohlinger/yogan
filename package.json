@@ -1,6 +1,6 @@
 {
   "name": "@yogan/root",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "license": "MIT",
   "private": true,
   "workspaces": [

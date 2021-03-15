@@ -1,10 +1,13 @@
-import { Scene } from 'three';
+import { Color, FrontSide, Mesh, MeshBasicMaterial, Scene } from 'three';
+import { addShaderDebugMaterial } from './helpers/improveMaterial';
 import { editorState, editorContextState } from './state';
 
 const getMUIIndex = (muid: string) => muid === 'muidEditor';
 
 const isAlreadyDerived: any = {};
 const nativePPisAlreadyDerived: any = [];
+
+let hasInit = false
 
 const _insertMaterialToEditor = (element: any, container: any, isEffect?: boolean) => {
   const el = isEffect ? element.screen : element
@@ -22,8 +25,12 @@ const _insertMaterialToEditor = (element: any, container: any, isEffect?: boolea
   // prevent to derive loop
   if (
     muid &&
+    !container[muid] &&
     el.material.defines
   ) {
+    const { material } = addShaderDebugMaterial(el.material);
+    el.material = material;
+
     // to check if multiple material users
     el.tmeDerived = true;
     el.material.numberOfMaterialsUser = 1
@@ -49,11 +56,12 @@ const _insertNativePostProcessToEditor = (el: any, container: any) => {
   const muid = el.materialCopy ? el.materialCopy.id : el.material.id;
   // prevent to derive loop
   if (
-    muid
+    muid &&
+    !container[muid]
   ) {
     
-    // const { material } = addShaderDebugMaterial(el.materialCopy || el.material);
-    el.material = el.materialCopy || el.material;
+    const { material } = addShaderDebugMaterial(el.materialCopy || el.material);
+    el.material = material;
     // to check if multiple material users
     el.tmeDerived = true;
     el.material.postprocess = true
@@ -63,10 +71,20 @@ const _insertNativePostProcessToEditor = (el: any, container: any) => {
   }
 }
 
+const meshDebugger:any = new Mesh(undefined, new MeshBasicMaterial({
+  color: new Color(0xff0000),
+  side: FrontSide,
+  wireframe: true,
+  visible: false
+}))
+meshDebugger.debugMaterial = true
 
 export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
   editorContextState.gl = gl;
 
+  if (!hasInit) {
+    hasInit = true
+  }
   if (editorContextState.composer) {
     editorContextState.composer.passes.forEach((pass: any) => {
       // check if is basic three shaderpass
@@ -85,7 +103,9 @@ export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
   scene?.traverse((el: any) => {
     // Vanilla return Object3D so (el instanceof Mesh || el instanceof InstancedMesh) doesn't work ?
     if (el.material) {
-     
+      if (el.debugMaterial) {
+        return
+      }
       _insertMaterialToEditor(el, isAlreadyDerived)
       // inc counter if the mesh also use the material
       if (el.material.defines && !el.tmeDerived) {
@@ -100,7 +120,6 @@ export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
     const muidDerived = cacheKeySplited[cacheKeySplited.findIndex(getMUIIndex) + 1];
 
     if (!isNaN(muidDerived) && isAlreadyDerived[muidDerived]) {
-
       isAlreadyDerived[muidDerived].program = program
       if (isAlreadyDerived[muidDerived].postprocess) {
         for(const effect of isAlreadyDerived[muidDerived].postprocess.effects) {
