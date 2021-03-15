@@ -41,8 +41,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     gl: WebGLRenderer,
     _options?: YoganOptions
   ) => {
-    const options = Object.assign(optionsDefault, _options);
-
+    // const options = Object.assign(optionsDefault, _options);
     materialsToProgram(scene, gl);
   };
 
