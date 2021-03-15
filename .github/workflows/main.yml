@@ -1,5 +1,12 @@
+  
 name: CI
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - 'demo/**'
+      - 'docs/**'
+      - '**.md'
+      - '.changeset/**'
 jobs:
   build:
     name: Build, lint, and test
@@ -17,7 +24,8 @@ jobs:
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
         with:
-          install-command: yarn --immutable --silent
+          install-command: yarn --silent
+          useLockFile: false
 
       - name: Check types
         run: yarn tsc

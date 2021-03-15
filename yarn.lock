@@ -8716,10 +8716,10 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
-leva@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/leva/-/leva-0.6.1.tgz#c46d3813cb58db064897b462267cdb565e16134c"
-  integrity sha512-joaQHFDkLmg4I8h9ytd4Fci85VXyp72R68OcaPJPaTXCo9xnCu45tYYAjC/ZMAg7Ko98qouL+Jfjg4CTSzu2yA==
+leva@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/leva/-/leva-0.6.2.tgz#9dff40109f178a7ddbfa8af8b0b927650780fd30"
+  integrity sha512-9XQtSR5AFVeFBNZhiyp/PC0Mdysfgvc9NrQF35Zeo+qVWc8y6FQZNUxaFq35964b7i3M1uA95uhUktSr10EDyg==
   dependencies:
     "@radix-ui/react-portal" "^0.0.6"
     "@radix-ui/react-tooltip" "^0.0.9"
@@ -11195,7 +11195,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^17.0.1:
+react-dom@17.0.1, react-dom@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
   integrity sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
@@ -11384,7 +11384,7 @@ react-use-measure@^2.0.3:
   dependencies:
     debounce "^1.2.0"
 
-react@^17.0.1:
+react@17.0.1, react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
   integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
