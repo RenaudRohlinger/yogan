@@ -3,7 +3,7 @@
 ## [![NPM Package][npm]][npm-url] [![Build Size][build-size]][build-size-url] [![NPM Downloads][npm-downloads]][npmtrends-url]
 
 
-Yōgan automatically detect the WebGL programs and provide a smart GUI for the uniforms.
+Yōgan automatically detect the WebGL programs and provide a smart GUI for the uniforms through [leva](https://github.com/pmndrs/leva).
 
 #### Support :
 
@@ -25,9 +25,7 @@ import {
   useEditorComposer,
 } from '@yogan/vanilla';
 
-Yogan(scene, renderer, {
-  camera: camera, // handle responsize dpr for fullscreen
-});
+Yogan(scene, renderer);
 
 let composer = new EffectComposer(renderer); // if using postprocess
 useEditorComposer(composer);

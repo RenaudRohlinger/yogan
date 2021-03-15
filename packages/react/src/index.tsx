@@ -10,14 +10,9 @@ import { Html } from './html';
 
 
 type YoganOptions = {
-  overrideRaf?: boolean;
-  className?: string;
-  fullScreen?: boolean;
 }
 
 const optionsDefault: YoganOptions = {
-  overrideRaf: false,
-  fullScreen: true,
 };
 
 
@@ -60,7 +55,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
       <>
         <Logic />
         <Html>
-          <GuiDom className={editorState.className} />
+          <GuiDom />
         </Html>
       </>
     );

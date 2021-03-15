@@ -1,8 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {
-  OrthographicCamera,
-  PerspectiveCamera,
   Scene,
   WebGLRenderer,
 } from 'three';
@@ -15,14 +13,11 @@ import {
 } from '@yogan/core';
 
 type YoganOptions = {
-  camera?: PerspectiveCamera | OrthographicCamera;
   overrideRaf?: boolean;
-  fullScreen?: boolean;
 }
 
 const optionsDefault: YoganOptions = {
   overrideRaf: false,
-  fullScreen: true,
 };
 
 export let updateEditor = (
@@ -41,29 +36,6 @@ export let Yogan = (
 
 if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') {
 } else {
-  const _resizeCanvasToDisplaySize = (
-    gl: WebGLRenderer,
-    options?: YoganOptions
-  ) => {
-    const canvas = gl.domElement;
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    const needResize = canvas.width !== width || canvas.height !== height;
-    if (needResize) {
-      gl.setSize(width, height, false);
-      if (options?.camera) {
-        const camera = options.camera;
-
-        if (camera.type === 'PerspectiveCamera') {
-          camera.aspect = canvas.clientWidth / canvas.clientHeight;
-          camera.updateProjectionMatrix();
-        }
-      }
-    }
-
-    return needResize;
-  };
-
   updateEditor = (
     scene: Scene,
     gl: WebGLRenderer,
@@ -72,7 +44,6 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     const options = Object.assign(optionsDefault, _options);
 
     materialsToProgram(scene, gl);
-    _resizeCanvasToDisplaySize(gl, options);
   };
 
   useEditorComposer = (composer: any) => {

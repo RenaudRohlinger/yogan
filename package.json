@@ -1,6 +1,6 @@
 {
   "name": "@yogan/root",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "license": "MIT",
   "private": true,
   "workspaces": [
@@ -34,7 +34,7 @@
     {
       "name": "Yogan Core",
       "limit": "3s",
-      "path": "packages/yogan/dist/yogan-core.*.prod.js"
+      "path": "packages/core/dist/yogan-core.*.prod.js"
     },
     {
       "name": "Yogan Vanilla",

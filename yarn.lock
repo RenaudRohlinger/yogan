@@ -2023,7 +2023,7 @@
   resolved "https://registry.yarnpkg.com/@stitches/core/-/core-0.1.0-canary.20.tgz#59974393d5e887adda94dc82ca7bb6574bc59cbc"
   integrity sha512-aWeUlFzCGl1hOa6hb3+OLuA4Z06wTjBjlp9yYHIA9JfN3E/BbjAYJ8i8dtD72t8N/QZcf7vAKpdMw8CrYffEIw==
 
-"@stitches/react@0.1.0-canary.20", "@stitches/react@^0.1.0-canary.20":
+"@stitches/react@^0.1.0-canary.20":
   version "0.1.0-canary.20"
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-0.1.0-canary.20.tgz#e946a4d8cc6dc6e3ed146d15eda4ba1657578fb8"
   integrity sha512-0TzcRBZYUYQgU1Tc9P3eA6nmviSlNIVZ5cu/HpTkp8ETAczebiCngTyabpiM3SvkIsaHjyJuEwTkBJbndF+sPQ==
@@ -8716,10 +8716,10 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
-leva@0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/leva/-/leva-0.5.5.tgz#3ff2ad86d08826e16114aaf31829160cad24830a"
-  integrity sha512-8V8L8mBPV9VH/t5/z9lPB/ugIBIPvFrQNh288HpcdY1bw3KSK5rVgbb/E47QuW9Mcgl8j+BRipw9NJtyFZH4XQ==
+leva@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/leva/-/leva-0.6.1.tgz#c46d3813cb58db064897b462267cdb565e16134c"
+  integrity sha512-joaQHFDkLmg4I8h9ytd4Fci85VXyp72R68OcaPJPaTXCo9xnCu45tYYAjC/ZMAg7Ko98qouL+Jfjg4CTSzu2yA==
   dependencies:
     "@radix-ui/react-portal" "^0.0.6"
     "@radix-ui/react-tooltip" "^0.0.9"
