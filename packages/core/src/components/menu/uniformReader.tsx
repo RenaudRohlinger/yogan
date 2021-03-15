@@ -30,7 +30,9 @@ export const UniformReader = () => {
         return null
       }
       const test = formatUniforms(material, programGl.id)
-      tempArr.push({name: name, format: test, material: material})
+      if (test) {
+        tempArr.push({name: name, format: test, material: material})
+      }
     })
     set(tempArr)
     editorState.triggerUpdate++
@@ -51,6 +53,13 @@ export const UniformReader = () => {
 
 
 const UniformComp = ({format, material, name} :any) => {
+  if (material.uniforms instanceof Map && material.uniforms.size && material.uniforms.size === 0) {
+    return null
+  }
+  if (!(material.uniforms instanceof Map) && Object.keys(material.uniforms).length === 0) {
+    return null
+  }
+
   const obj:any = {}
   obj[name] = folder(format)
   if (!obj) {

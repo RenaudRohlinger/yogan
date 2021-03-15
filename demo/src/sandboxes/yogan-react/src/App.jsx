@@ -2,7 +2,7 @@ import React from 'react'
 import { Canvas, extend } from 'react-three-fiber';
 import { Yogan, useYoganComposer } from '@yogan/react';
 import { Environment, MeshDistortMaterial, shaderMaterial, Sphere } from '@react-three/drei'
-import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+import { EffectComposer, Noise, Outline, Vignette } from '@react-three/postprocessing'
 import './index.css'
 
 
@@ -42,7 +42,7 @@ export default function App() {
   
   return (
     <Canvas concurrent orthographic pixelRatio={[1, 2]} camera={{ position: [0, 0, 5], near: 1, far: 15, zoom: 100 }}>
-      <ambientLight />
+      {/* <ambientLight /> */}
       <Yogan />
       <React.Suspense fallback={null}>
         <Sphere
@@ -50,14 +50,15 @@ export default function App() {
         >
           <myMaterial />
         </Sphere>
-        <Sphere
+        {/* <Sphere
           args={[1, 32, 32]}
         >
           <MeshDistortMaterial factor={2} color={'black'} />
-        </Sphere>
-        <Environment preset={'studio'} />
+        </Sphere> */}
+        {/* <Environment preset={'studio'} /> */}
         <EffectComposer ref={useYoganComposer()}>
-          {/* <Noise opacity={0.4} /> */}
+          <Noise opacity={0.4} />
+          <Outline edgeThickness={1} />
           <Vignette eskil={false} offset={0.1} darkness={1.1} />
         </EffectComposer>
       </React.Suspense>
