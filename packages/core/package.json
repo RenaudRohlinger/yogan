@@ -1,6 +1,6 @@
 {
   "name": "@yogan/core",
-  "version": "0.2.5",
+  "version": "3.0.0",
   "main": "dist/yogan-core.cjs.js",
   "module": "dist/yogan-core.esm.js",
   "types": "dist/yogan-core.cjs.d.ts",
