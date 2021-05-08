@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@react-three/fiber": "^6.0.20",
-    "@yogan/core": ">=0.0.1",
+    "@yogan/core": ">=2.0.0",
     "leva": "^0.9.9"
   },
   "peerDependencies": {
