@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { extend } from 'react-three-fiber'
+import { extend } from '@react-three/fiber'
 
 class MoonMaterial extends THREE.ShaderMaterial {
   constructor() {

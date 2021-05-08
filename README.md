@@ -26,7 +26,7 @@ Demo : [codesandbox](https://codesandbox.io/s/yoganvanilla-l55jn)
 
 [`See more - @yogan/vanilla`](https://github.com/RenaudRohlinger/yogan/tree/main/packages/vanilla) -->
 
-## React-Three-Fiber
+## @react-three/fiber
 
 ```sh
 yarn add -D @yogan/react

@@ -19,7 +19,7 @@
     ]
   },
   "dependencies": {
-    "leva": "^0.6.2",
-    "valtio": "^0.8.2"
+    "leva": "^0.9.9",
+    "valtio": "^1.0.4"
   }
 }

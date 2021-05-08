@@ -83,8 +83,6 @@ export const getShaderWithObc = (material: any) => {
       val.isNativeUniforms = true
     }
   }
-  
-  // TODO DEBUG UNIFORMS OF CUSTOM MATERIALS SHADER IS NOT SHOWING
   if (!dummyShaderLib.obcAdded && !material.obcAdded) {
     material.obcAdded = true;
     dummyShaderLib.obcAdded = true;

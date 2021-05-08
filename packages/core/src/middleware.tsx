@@ -1,4 +1,4 @@
-import { Color, FrontSide, Mesh, MeshBasicMaterial, Scene } from 'three';
+import { Scene } from 'three';
 import { addShaderDebugMaterial } from './helpers/improveMaterial';
 import { editorState, editorContextState } from './state';
 
@@ -23,11 +23,11 @@ const _insertMaterialToEditor = (element: any, container: any, isEffect?: boolea
   }
   const muid = el.material.id;
   // prevent to derive loop
-  if (
-    muid &&
-    !container[muid] &&
-    el.material.defines
-  ) {
+  // if (
+  //   muid &&
+  //   !container[muid] &&
+  //   el.material.defines
+  // ) {
     const { material } = addShaderDebugMaterial(el.material);
     el.material = material;
 
@@ -46,7 +46,7 @@ const _insertMaterialToEditor = (element: any, container: any, isEffect?: boolea
       el.material.postprocess = element
       element.recompile()
     }
-  }
+  // }
 }
 
 const _insertNativePostProcessToEditor = (el: any, container: any) => {
@@ -71,14 +71,6 @@ const _insertNativePostProcessToEditor = (el: any, container: any) => {
   }
 }
 
-const meshDebugger:any = new Mesh(undefined, new MeshBasicMaterial({
-  color: new Color(0xff0000),
-  side: FrontSide,
-  wireframe: true,
-  visible: false
-}))
-meshDebugger.debugMaterial = true
-
 export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
   editorContextState.gl = gl;
 
@@ -100,14 +92,13 @@ export const traverseMaterialsToProgram = (scene: Scene, gl: any) => {
   }
   const programs: object[] = [];
   // update
+
   scene?.traverse((el: any) => {
     // Vanilla return Object3D so (el instanceof Mesh || el instanceof InstancedMesh) doesn't work ?
     if (el.material) {
-      if (el.debugMaterial) {
-        return
-      }
       _insertMaterialToEditor(el, isAlreadyDerived)
       // inc counter if the mesh also use the material
+      
       if (el.material.defines && !el.tmeDerived) {
         el.tmeDerived = true;
         el.material.numberOfMaterialsUser++

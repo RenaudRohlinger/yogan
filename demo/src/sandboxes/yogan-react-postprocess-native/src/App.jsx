@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import React, { useRef, Suspense, useEffect, useLayoutEffect } from 'react'
-import { Canvas, useFrame, useThree, extend } from 'react-three-fiber'
+import { Canvas, useFrame, useThree, extend } from '@react-three/fiber'
 import { ContactShadows, Loader, useTexture } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'

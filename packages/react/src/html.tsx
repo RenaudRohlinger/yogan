@@ -10,7 +10,7 @@ import React, {
 import { unmountComponentAtNode, render } from 'react-dom';
 import { Group } from 'three';
 import { Assign } from 'utility-types';
-import { ReactThreeFiber } from 'react-three-fiber';
+import { ReactThreeFiber } from '@react-three/fiber';
 
 export interface HtmlProps
   extends Omit<

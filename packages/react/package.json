@@ -5,13 +5,24 @@
   "module": "dist/yogan-react.esm.js",
   "types": "dist/yogan-react.cjs.d.ts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RenaudRohlinger/yogan.git",
+    "directory": "packages/react"
+  },
+  "preconstruct": {
+    "entrypoints": [
+      "index.tsx"
+    ]
+  },
   "dependencies": {
-    "@yogan/core": ">=0.0.1"
+    "@react-three/fiber": "^6.0.20",
+    "@yogan/core": ">=0.0.1",
+    "leva": "^0.9.9"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "three": "*",
     "react-dom": ">=16.8.0",
-    "react-three-fiber": "*"
+    "three": "*"
   }
 }

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useFrame, useThree } from 'react-three-fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import {
   GuiDom,
   editorState,
@@ -7,7 +7,7 @@ import {
   materialsToProgram,
 } from '@yogan/core';
 import { Html } from './html';
-
+import { useHelpers } from './helpers/useLights';
 
 type YoganOptions = {
 }
@@ -23,6 +23,7 @@ export let Yogan = (
 ) => {};
 
 export let useYoganComposer = () => {};
+export let useYoganHelper = (node: any) => {};
 
 if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') {
 } else {
@@ -45,6 +46,10 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     }, []);
     
     return onRefChange
+  }
+
+  useYoganHelper = (node :any) => {
+    useHelpers(node)
   }
 
   Yogan = (_options?: YoganOptions) => {

@@ -59,7 +59,6 @@ const UniformComp = ({format, material, name} :any) => {
   if (!(material.uniforms instanceof Map) && Object.keys(material.uniforms).length === 0) {
     return null
   }
-  console.log(material.uniforms instanceof Map)
 
   const obj:any = {}
   obj[name] = folder(format)

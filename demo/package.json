@@ -4,20 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^4.0.0-beta.4",
+    "@react-three/drei": "^4.3.3",
+    "@react-three/fiber": "^6.0.20",
     "@react-three/postprocessing": "^1.5.2",
     "@yogan/core": "*",
     "@yogan/react": "*",
     "noisejs": "^2.1.0",
-    "r3f-perf": "^0.83.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-three-fiber": "^5.3.19",
-    "three": "^0.126.1",
-    "three-stdlib": "^1.0.0",
+    "r3f-perf": "^2.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "three": "^0.128.0",
+    "three-stdlib": "^2.0.2",
     "wouter": "^2.7.4"
   },
   "devDependencies": {
