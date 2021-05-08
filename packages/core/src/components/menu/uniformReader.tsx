@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { editorContextState as editorContext, editorState } from '../../state';
-import { folder, LevaPanel, useControls, useCreateStore, useStoreContext, LevaStoreProvider } from "leva";
+import { folder, useControls, useStoreContext, LevaStoreProvider } from "leva";
 import { useSnapshot } from 'valtio';
 import * as THREE from 'three'
 import { getNameForEditorMaterial, makeControls } from '../../helpers/shaderToMaterial';
@@ -11,7 +11,6 @@ import { getNameForEditorMaterial, makeControls } from '../../helpers/shaderToMa
 const color = new THREE.Color()
 export const UniformReader = () => {
   const [arr, set]:any = React.useState([])
-  const store = useCreateStore()
 
   const snapshot = useSnapshot(editorState);
 
@@ -41,8 +40,7 @@ export const UniformReader = () => {
 
   return (
     <div key={snapshot.triggerUpdate}>
-      <LevaPanel store={store} />
-      <LevaStoreProvider store={store}>
+      <LevaStoreProvider store={editorState.store}>
         {arr.map(({format, material, name}:any) => {
           return <UniformComp format={format} material={material} name={name} key={name.toString()} />;
         })}

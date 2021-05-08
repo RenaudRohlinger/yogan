@@ -1,9 +1,10 @@
 import { useRef, useEffect } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import {useControls} from 'leva'
+import {useControls, useStoreContext} from 'leva'
+import {editorState} from '@yogan/core'
 
-function findHelper(node:any) {
+function findHelper(node) {
   if (node.type.includes('Light')) {
     switch (node.type) {
       case 'DirectionalLight':
@@ -15,22 +16,32 @@ function findHelper(node:any) {
     }
   }
 }
-function useHelpers(object3D: any, ...args: any) {
-  // const { x, y, z, far, near, bias } = useControls({
-  //   x: 0,
-  //   y: 5,
-  //   z: 5,
-  //   bias: { value: 0, max: 0.1, min: 0 },
-  //   far: { value: 20, max: 20, min: 0 },
-  //   near: { value: 5, max: 20, min: 0 },
-  // })
+function useHelpers(object3D, ...args) {
+  const {far, near, bias } = useControls({
+    bias: { value: 0, max: 0.1, min: 0, onChange: (value, path, { disabled }) => {
+      if (object3D.current) {
+        object3D.current.bias = value
+      }
+    } },
+    far: { value: 20, max: 20, min: 0, onChange: (value, path, { disabled }) => {
+      if (object3D.current) {
+        object3D.current.far = value
+      }
+    } },
+    near: { value: 5, max: 20, min: 0, onChange: (value, path, { disabled }) => {
+      if (object3D.current) {
+        object3D.current.near = value
+      }
+    } },
+  }, editorState.store)
 
   const helper = useRef<any>(null)
   const camera = useRef<any>(null)
   const { scene } = useThree()
   useEffect(() => {
     if (object3D.current) {
-      const proto:any = findHelper(object3D.current)
+      const proto = findHelper(object3D.current)
+
       helper.current = new proto(object3D.current, ...args)
       
       if (helper.current) {

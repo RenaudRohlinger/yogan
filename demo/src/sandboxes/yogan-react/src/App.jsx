@@ -56,7 +56,8 @@ function Test () {
 }
 export default function App() {
   return (
-    <Canvas concurrent orthographic pixelRatio={[1, 2]} camera={{ position: [0, 0, 5], near: 1, far: 15, zoom: 100 }}>
+    <Canvas linear pixelRatio={[1, 2]} camera={{ position: [0, 0, 5] }}>
+      <color attach='background' args={['#333']} />
       {/* <ambientLight /> */}
       <Yogan />
       <React.Suspense fallback={null}>
@@ -66,6 +67,7 @@ export default function App() {
           <myMaterial />
         </Sphere>
         <Test />
+        {/* <directionalLight position={[-15,5,0]} /> */}
         {/* <Environment preset={'studio'} /> */}
         {/* <EffectComposer ref={useYoganComposer()}>
           <Noise opacity={0.4} />

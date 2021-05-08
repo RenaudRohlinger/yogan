@@ -8,11 +8,15 @@ import {
 } from '@yogan/core';
 import { Html } from './html';
 import { useHelpers } from './helpers/useLights';
+import DebugGrid from './helpers/debugGrid';
+import { useControls } from 'leva';
 
 type YoganOptions = {
+  grid: boolean
 }
 
 const optionsDefault: YoganOptions = {
+  grid: true
 };
 
 
@@ -36,6 +40,18 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
 
     return null;
   };
+
+  const YoganDebug = () => {
+    const { grid } = useControls('debug', {
+      grid: true
+    })
+    return (
+      <>
+      {grid && <DebugGrid />}
+      </>
+    )
+  }
+
   useYoganComposer = () => {
     const onRefChange = useCallback(node => {
       if (node === null) { 
@@ -52,6 +68,8 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     useHelpers(node)
   }
 
+
+
   Yogan = (_options?: YoganOptions) => {
     const options = Object.assign(optionsDefault, _options);
     Object.assign(editorState, options);
@@ -59,6 +77,7 @@ if (process.env.NODE_ENV === 'production' && process.env.YOGAN_PROD !== 'SHOW') 
     return (
       <>
         <Logic />
+        {options.grid && <YoganDebug />}
         <Html>
           <GuiDom />
         </Html>
