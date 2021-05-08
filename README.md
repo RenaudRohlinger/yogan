@@ -20,7 +20,6 @@ It is possible to specify the range of your uniforms:
 
 For the moment only float are supported, vectors should be added soon: https://github.com/pmndrs/leva/issues/141
 
-
 <!-- 
 Demo : [codesandbox](https://codesandbox.io/s/yoganvanilla-l55jn)
 
