@@ -1,6 +1,6 @@
 import React from 'react'
 
-function undepth(obj) {
+function undepth(obj: any) {
   if (obj && obj.material) {
     obj.material.depthWrite = false
   }
@@ -13,7 +13,6 @@ function DebugGrid() {
       <gridHelper
         ref={undepth}
         renderOrder={9001}
-        color="red"
         args={[100, 100, '#fff', '#17141F']}
         scale={10}
       />

@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import {useControls, useStoreContext} from 'leva'
 import {editorState} from '@yogan/core'
 
-function findHelper(node) {
+function findHelper(node: any) {
   if (node.type.includes('Light')) {
     switch (node.type) {
       case 'DirectionalLight':
@@ -16,24 +16,24 @@ function findHelper(node) {
     }
   }
 }
-function useHelpers(object3D, ...args) {
-  const {far, near, bias } = useControls({
-    bias: { value: 0, max: 0.1, min: 0, onChange: (value, path, { disabled }) => {
-      if (object3D.current) {
-        object3D.current.bias = value
-      }
-    } },
-    far: { value: 20, max: 20, min: 0, onChange: (value, path, { disabled }) => {
-      if (object3D.current) {
-        object3D.current.far = value
-      }
-    } },
-    near: { value: 5, max: 20, min: 0, onChange: (value, path, { disabled }) => {
-      if (object3D.current) {
-        object3D.current.near = value
-      }
-    } },
-  }, editorState.store)
+function useHelpers(object3D: any, ...args: any[]) {
+  // const {far, near, bias } = useControls({
+  //   bias: { value: 0, max: 0.1, min: 0, onChange: (value, path, { disabled }) => {
+  //     if (object3D.current) {
+  //       object3D.current.bias = value
+  //     }
+  //   } },
+  //   far: { value: 20, max: 20, min: 0, onChange: (value, path, { disabled }) => {
+  //     if (object3D.current) {
+  //       object3D.current.far = value
+  //     }
+  //   } },
+  //   near: { value: 5, max: 20, min: 0, onChange: (value, path, { disabled }) => {
+  //     if (object3D.current) {
+  //       object3D.current.near = value
+  //     }
+  //   } },
+  // }, editorState.store)
 
   const helper = useRef<any>(null)
   const camera = useRef<any>(null)
@@ -42,6 +42,7 @@ function useHelpers(object3D, ...args) {
     if (object3D.current) {
       const proto = findHelper(object3D.current)
 
+      if (!proto) return
       helper.current = new proto(object3D.current, ...args)
       
       if (helper.current) {
